@@ -1,0 +1,102 @@
+:root {
+    --background: #1e1e1e;
+    --foreground: #d4d4d4;
+    --prompt-color: #569cd6;
+    --command-color: #ce9178;
+    --output-color: #9cdcfe;
+    --error-color: #f44747;
+    --border-color: #333;
+    --font-family: 'Consolas', 'Courier New', monospace;
+    --font-size: 1em;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-family);
+    font-size: var(--font-size);
+    line-height: 1.4;
+}
+
+#terminal {
+    height: 100vh;
+    padding: 10px;
+    box-sizing: border-box;
+    overflow-y: auto;
+    cursor: text; /* Indicate clicking focuses input */
+    display: flex;
+    flex-direction: column;
+}
+
+#output {
+    flex-grow: 1; /* Takes up available space */
+    word-wrap: break-word; /* Prevent long outputs from overflowing */
+    white-space: pre-wrap; /* Respect whitespace and newlines */
+}
+
+#output .command-echo {
+    color: var(--command-color);
+}
+#output .command-echo .prompt {
+    color: var(--prompt-color);
+}
+#output .output-line {
+    color: var(--output-color);
+}
+#output .error-line {
+    color: var(--error-color);
+}
+#output .motd {
+    color: #6a9955; /* Different color for MOTD */
+}
+
+.input-line {
+    display: flex;
+    align-items: center;
+}
+
+.prompt {
+    color: var(--prompt-color);
+    margin-right: 8px;
+    white-space: nowrap; /* Prevent prompt wrapping */
+}
+
+#input {
+    background: transparent;
+    border: none;
+    color: var(--foreground);
+    font-family: inherit;
+    font-size: inherit;
+    outline: none;
+    flex-grow: 1; /* Takes remaining width */
+    caret-color: var(--foreground);
+}
+
+/* Basic Scrollbar Styling (Optional, might vary by browser) */
+#terminal::-webkit-scrollbar {
+    width: 10px;
+}
+
+#terminal::-webkit-scrollbar-track {
+    background: var(--border-color);
+}
+
+#terminal::-webkit-scrollbar-thumb {
+    background-color: var(--foreground);
+    border-radius: 5px;
+    border: 2px solid var(--border-color);
+}
+
+/* Theme Variations */
+body.light-theme {
+    --background: #f0f0f0;
+    --foreground: #333333;
+    --prompt-color: #0000ff;
+    --command-color: #800000;
+    --output-color: #006400;
+    --error-color: #ff0000;
+    --border-color: #cccccc;
+    --motd: #008080;
+}
