@@ -1,13 +1,20 @@
 :root {
-    --background: #1e1e1e;
-    --foreground: #d4d4d4;
-    --prompt-color: #569cd6;
-    --command-color: #ce9178;
-    --output-color: #9cdcfe;
-    --error-color: #f44747;
-    --border-color: #333;
-    --font-family: 'Consolas', 'Courier New', monospace;
+    --background: #1a1a2e; /* Deep space blue */
+    --foreground: #e0e0e0; /* Off-white */
+    --prompt-color: #f0a500; /* Amber */
+    --command-color: #b8e994; /* Light green */
+    --output-color: #7ed6df; /* Cyan */
+    --error-color: #ff6b6b; /* Red */
+    --border-color: #4a4a6a;
+    --font-family: 'Fira Code', 'Consolas', 'Courier New', monospace; /* Font with ligatures if installed */
     --font-size: 1em;
+
+    /* Game specific colors */
+    --room-desc-color: #ffffff; /* Bright white for room descriptions */
+    --item-color: #f0e68c; /* Khaki for items */
+    --hint-color: #ffa07a; /* Light Salmon for hints */
+    --story-color: #dda0dd; /* Plum for story elements */
+    --points-color: #ffd700; /* Gold for points */
 }
 
 body {
@@ -17,27 +24,28 @@ body {
     color: var(--foreground);
     font-family: var(--font-family);
     font-size: var(--font-size);
-    line-height: 1.4;
+    line-height: 1.5; /* Slightly more spacing */
 }
 
 #terminal {
     height: 100vh;
-    padding: 10px;
+    padding: 15px;
     box-sizing: border-box;
     overflow-y: auto;
-    cursor: text; /* Indicate clicking focuses input */
+    cursor: text;
     display: flex;
     flex-direction: column;
 }
 
 #output {
-    flex-grow: 1; /* Takes up available space */
-    word-wrap: break-word; /* Prevent long outputs from overflowing */
-    white-space: pre-wrap; /* Respect whitespace and newlines */
+    flex-grow: 1;
+    word-wrap: break-word;
+    white-space: pre-wrap;
 }
 
 #output .command-echo {
     color: var(--command-color);
+    opacity: 0.8; /* Slightly fade past commands */
 }
 #output .command-echo .prompt {
     color: var(--prompt-color);
@@ -47,20 +55,57 @@ body {
 }
 #output .error-line {
     color: var(--error-color);
+    font-weight: bold;
 }
 #output .motd {
-    color: #6a9955; /* Different color for MOTD */
+    color: #6a9955;
 }
+
+/* Game message styling */
+#output .game-room-desc {
+    color: var(--room-desc-color);
+    margin-bottom: 5px;
+}
+#output .game-item {
+    color: var(--item-color);
+    font-style: italic;
+}
+#output .game-exit {
+    color: var(--prompt-color);
+    font-weight: bold;
+}
+#output .game-info { /* General game messages */
+    color: var(--foreground);
+}
+#output .game-hint {
+    color: var(--hint-color);
+    border-left: 3px solid var(--hint-color);
+    padding-left: 8px;
+    margin: 5px 0;
+}
+#output .game-story {
+    color: var(--story-color);
+    background-color: rgba(221, 160, 221, 0.1); /* Subtle background for story */
+    padding: 5px;
+    border-radius: 3px;
+    margin: 5px 0;
+}
+#output .game-points {
+    color: var(--points-color);
+    font-weight: bold;
+}
+
 
 .input-line {
     display: flex;
     align-items: center;
+    margin-top: 5px; /* Space above input */
 }
 
 .prompt {
     color: var(--prompt-color);
     margin-right: 8px;
-    white-space: nowrap; /* Prevent prompt wrapping */
+    white-space: nowrap;
 }
 
 #input {
@@ -70,19 +115,13 @@ body {
     font-family: inherit;
     font-size: inherit;
     outline: none;
-    flex-grow: 1; /* Takes remaining width */
+    flex-grow: 1;
     caret-color: var(--foreground);
 }
 
-/* Basic Scrollbar Styling (Optional, might vary by browser) */
-#terminal::-webkit-scrollbar {
-    width: 10px;
-}
-
-#terminal::-webkit-scrollbar-track {
-    background: var(--border-color);
-}
-
+/* Scrollbar Styling */
+#terminal::-webkit-scrollbar { width: 10px; }
+#terminal::-webkit-scrollbar-track { background: var(--border-color); }
 #terminal::-webkit-scrollbar-thumb {
     background-color: var(--foreground);
     border-radius: 5px;
@@ -91,7 +130,7 @@ body {
 
 /* Theme Variations */
 body.light-theme {
-    --background: #f0f0f0;
+    --background: #f8f8f8;
     --foreground: #333333;
     --prompt-color: #0000ff;
     --command-color: #800000;
@@ -99,4 +138,10 @@ body.light-theme {
     --error-color: #ff0000;
     --border-color: #cccccc;
     --motd: #008080;
+    --room-desc-color: #111;
+    --item-color: #a0522d; /* Sienna */
+    --hint-color: #dc143c; /* Crimson */
+    --story-color: #483d8b; /* DarkSlateBlue */
+    --points-color: #b8860b; /* DarkGoldenrod */
 }
+body.light-theme .game-story { background-color: rgba(72, 61, 139, 0.1); }
